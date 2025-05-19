@@ -12,10 +12,14 @@
   <p id="score"></p>
   <p id="grade"></p>
   <div id="detailedResults"></div>
-  <button onclick="window.location.href='quiz.html'">Пройти ще раз</button>
-</div>
+  <button onclick="restartQuiz()">Пройти ще раз</button>
 
-<script>
+
+  <script>
+    function restartQuiz() {
+    localStorage.clear();
+    window.location.href = "index.html";
+  }
   document.getElementById("score").innerHTML = `Ви набрали <strong>${localStorage.getItem("score")} з 12</strong> балів!`;
   document.getElementById("grade").innerHTML = `Оцінка: <strong>${localStorage.getItem("grade")}</strong>`;
 
@@ -28,5 +32,6 @@
     detailedResults.innerHTML += resultText;
   });
 </script>
+
 </body>
 </html>
