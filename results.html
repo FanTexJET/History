@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Результати вікторини</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Результати вікторини</h1>
+  <p id="score"></p>
+  <p id="grade"></p>
+  <div id="detailedResults"></div>
+  <button onclick="window.location.href='quiz.html'">Пройти ще раз</button>
+</div>
+
+<script>
+  document.getElementById("score").innerHTML = `Ви набрали <strong>${localStorage.getItem("score")} з 12</strong> балів!`;
+  document.getElementById("grade").innerHTML = `Оцінка: <strong>${localStorage.getItem("grade")}</strong>`;
+
+  let results = JSON.parse(localStorage.getItem("results"));
+  let detailedResults = document.getElementById("detailedResults");
+  results.forEach((res, index) => {
+    let resultText = res.correct
+            ? `<p>✅ ${index + 1}. ${res.question} – Вірно!</p>`
+            : `<p>❌ ${index + 1}. ${res.question} – Неправильно. Правильна відповідь: <strong>${res.correctAnswer}</strong></p>`;
+    detailedResults.innerHTML += resultText;
+  });
+</script>
+</body>
+</html>
